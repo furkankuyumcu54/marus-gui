@@ -61,27 +61,28 @@ if __name__ == '__main__':
 
     # Camera setup
     cap = cv2.VideoCapture(0)
-    ret, _ = cap.read()  # Read a frame to initialize the camera
+    ret, _ = cap.read()
 
     # Camera View
-    camera_label = QLabel('Camera View')
+    camera_label = QLabel('Kamera Görüntüsü')
     camera_label.setAlignment(Qt.AlignCenter)
 
     # Movement Buttons
-    up_button = QPushButton('Up')
-    down_button = QPushButton('Down')
-    left_button = QPushButton('Left')
-    right_button = QPushButton('Right')
+    up_button = QPushButton('Yukarı')
+    down_button = QPushButton('Aşağı')
+    left_button = QPushButton('Sol')
+    right_button = QPushButton('Sağ')
 
     # Fire Mode Options
-    fire_mode_label = QLabel('Fire Mode:')
-    fire_mode_option1 = QPushButton('Option 1')
-    fire_mode_option2 = QPushButton('Option 2')
+    fire_mode_label = QLabel('Atış Modu:')
+    fire_mode_option1 = QPushButton('Manuel')
+    fire_mode_option2 = QPushButton('Yarı-Oto')
+    fire_mode_option3 = QPushButton('Tam-Oto')
 
     # Fire, Pause, Stop Buttons
-    fire_button = QPushButton('Fire')
-    pause_button = QPushButton('Pause')
-    stop_button = QPushButton('Stop')
+    fire_button = QPushButton('Ateş')
+    pause_button = QPushButton('Durdur')
+    stop_button = QPushButton('Kapat')
 
     # Movement Buttons Layout
     movement_button_layout = QVBoxLayout()
@@ -95,6 +96,7 @@ if __name__ == '__main__':
     fire_mode_layout.addWidget(fire_mode_label)
     fire_mode_layout.addWidget(fire_mode_option1)
     fire_mode_layout.addWidget(fire_mode_option2)
+    fire_mode_layout.addWidget(fire_mode_option3)
 
     # Fire, Pause, Stop Buttons Layout
     action_button_layout = QHBoxLayout()
@@ -104,8 +106,8 @@ if __name__ == '__main__':
 
     # Add PNG image
     image_label = QLabel()
-    pixmap = QPixmap('marus_logo.jpg')  # Change 'your_image.png' to the path of your PNG file
-    pixmap_resized = pixmap.scaled(400, 400, Qt.KeepAspectRatio)  # Adjust the size as needed
+    pixmap = QPixmap('marus_logo.jpg')
+    pixmap_resized = pixmap.scaled(400, 400, Qt.KeepAspectRatio)
     image_label.setPixmap(pixmap_resized)
 
     # Main Button Layout
@@ -116,17 +118,17 @@ if __name__ == '__main__':
 
     # Layout for the PNG image
     image_layout = QHBoxLayout()
-    image_layout.addStretch(2)  # Add space to align the image in the center
+    image_layout.addStretch(2)
     image_layout.addWidget(image_label)
-    image_layout.addStretch(1)  # Add space to align the image in the center
-    button_layout.addLayout(image_layout)  # Add the image layout here
+    image_layout.addStretch(1)
+    button_layout.addLayout(image_layout)
 
-    button_layout.addStretch(1)  # Add space between image and action buttons
+    button_layout.addStretch(1)
     button_layout.addLayout(action_button_layout)
 
     # Main Layout
     main_layout = QHBoxLayout()
-    main_layout.addWidget(camera_label, 1)  # Add camera label, taking up most of the space
+    main_layout.addWidget(camera_label, 1)
     main_layout.addLayout(button_layout)
 
     window.setLayout(main_layout)
@@ -143,8 +145,8 @@ if __name__ == '__main__':
     # Setup timer to update camera feed
     timer = QTimer()
     timer.timeout.connect(update_camera)
-    timer.start(10)  # Update every 10 milliseconds
+    timer.start(10)
 
-    window.show()  # Show the window
+    window.show()
 
     sys.exit(app.exec_())
